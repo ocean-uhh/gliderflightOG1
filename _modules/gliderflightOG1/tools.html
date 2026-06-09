@@ -178,7 +178,7 @@
 
 <div class="viewcode-block" id="calc_w_meas">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.calc_w_meas">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">calc_w_meas</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_w_meas</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">depth_var</span><span class="o">=</span><span class="s2">&quot;DEPTH&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the vertical velocity of a glider using changes in pressure with time.</span>
 
 <span class="sd">    Parameters</span>
@@ -194,6 +194,13 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    Original Author: Eleanor Frajka-Williams</span>
+<span class="sd">    </span>
+<span class="sd">    Seaglider/basestation3.Utils.ctr_1st_diff() code</span>
+<span class="sd">    dydx = np.array(np.zeros(len(y)), float)</span>
+<span class="sd">    end = len(x) - 1</span>
+<span class="sd">    dydx[1:end] = (y[2:] - y[0 : end - 1]) / (x[2:] - x[0 : end - 1])</span>
+<span class="sd">    dydx[0] = (y[1] - y[0]) / (x[1] - x[0])</span>
+<span class="sd">    dydx[end] = (y[end] - y[end - 1]) / (x[end] - x[end - 1])</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">utilities</span><span class="o">.</span><span class="n">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;TIME&quot;</span><span class="p">])</span>
@@ -203,7 +210,7 @@
         <span class="n">var</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;PRES&quot;</span><span class="p">,</span> <span class="s2">&quot;LATITUDE&quot;</span><span class="p">,</span> <span class="s2">&quot;LONGITUDE&quot;</span><span class="p">]</span>
     <span class="p">):</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">calc_DEPTH_Z</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-    <span class="n">depth</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">DEPTH_Z</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">depth_var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
     <span class="c1"># Calculate the centered differences in pressure and time, i.e. instead of using neighboring points,</span>
     <span class="c1"># use the points two steps away.  This has a couple of advantages: one being a slight smoothing of the</span>

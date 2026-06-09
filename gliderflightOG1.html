@@ -95,6 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-gliderflightOG1.utilities">utilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.apply_defaults"><code class="docutils literal notranslate"><span class="pre">apply_defaults()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.check_og1_flight_variables"><code class="docutils literal notranslate"><span class="pre">check_og1_flight_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.construct_2dgrid"><code class="docutils literal notranslate"><span class="pre">construct_2dgrid()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.download_file"><code class="docutils literal notranslate"><span class="pre">download_file()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.get_default_data_dir"><code class="docutils literal notranslate"><span class="pre">get_default_data_dir()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.resolve_file_path"><code class="docutils literal notranslate"><span class="pre">resolve_file_path()</span></code></a></li>
@@ -315,7 +316,7 @@ it converts the invalid attributes to strings and retries the save operation.</p
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gliderflightOG1.tools.calc_w_meas">
-<span class="sig-prename descclassname"><span class="pre">gliderflightOG1.tools.</span></span><span class="sig-name descname"><span class="pre">calc_w_meas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gliderflightOG1/tools.html#calc_w_meas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gliderflightOG1.tools.calc_w_meas" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">gliderflightOG1.tools.</span></span><span class="sig-name descname"><span class="pre">calc_w_meas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DEPTH'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gliderflightOG1/tools.html#calc_w_meas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gliderflightOG1.tools.calc_w_meas" title="Link to this definition"></a></dt>
 <dd><p>Calculates the vertical velocity of a glider using changes in pressure with time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -330,6 +331,12 @@ it converts the invalid attributes to strings and retries the save operation.</p
 </dl>
 <p class="rubric">Notes</p>
 <p>Original Author: Eleanor Frajka-Williams</p>
+<p>Seaglider/basestation3.Utils.ctr_1st_diff() code
+dydx = np.array(np.zeros(len(y)), float)
+end = len(x) - 1
+dydx[1:end] = (y[2:] - y[0 : end - 1]) / (x[2:] - x[0 : end - 1])
+dydx[0] = (y[1] - y[0]) / (x[1] - x[0])
+dydx[end] = (y[end] - y[end - 1]) / (x[end] - x[end - 1])</p>
 </dd></dl>
 
 <dl class="py function">
@@ -630,6 +637,45 @@ it converts the invalid attributes to strings and retries the save operation.</p
 <dd class="field-even"><p>list</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gliderflightOG1.utilities.construct_2dgrid">
+<span class="sig-prename descclassname"><span class="pre">gliderflightOG1.utilities.</span></span><span class="sig-name descname"><span class="pre">construct_2dgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_bin_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_bin_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'median'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gliderflightOG1/utilities.html#construct_2dgrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gliderflightOG1.utilities.construct_2dgrid" title="Link to this definition"></a></dt>
+<dd><p>Constructs a 2D gridded representation of input data based on specified resolutions. The function takes in x, y, and v data,
+and generates a grid where each cell contains the aggregated value (e.g., mean, median) of v corresponding to the x and y coordinates.
+If the input data is already binned and you want the grid coordinates to align with the original bin edges, set <cite>x_bin_center</cite> and <cite>y_bin_center</cite> to False and the
+resolution (i.e. xi and yi) to the bin size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – Input data representing the x-dimension.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – Input data representing the y-dimension.</p></li>
+<li><p><strong>v</strong> (<em>array-like</em>) – Input data representing the z-dimension (values to be gridded).</p></li>
+<li><p><strong>xi</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em><em>, </em><em>default=1</em>) – Resolution for the x-dimension grid spacing.</p></li>
+<li><p><strong>yi</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em><em>, </em><em>default=1</em>) – Resolution for the y-dimension grid spacing.</p></li>
+<li><p><strong>x_bin_center</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – If True, the x-coordinate grid (<cite>XI</cite>) corresponds to the <strong>center</strong> of each x-bin.
+If False, it corresponds to the <strong>left edge</strong> of each bin.
+This is especially useful if the input <cite>x</cite> data is already binned with the same resolution as <cite>xi</cite>,
+and you want the grid coordinates to align with the original bin edges. (e.g. profile numbers).</p></li>
+<li><p><strong>y_bin_center</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – Same as <cite>x_bin_center</cite>, but for the y-coordinate grid (<cite>YI</cite>).
+Set to False if your <cite>y</cite> data is already pre-binned with the same resolution as <cite>yi</cite>.</p></li>
+<li><p><strong>agg</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='median'</em>) – Aggregation method to be used for gridding. Options include ‘mean’, ‘median’, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>grid</strong> (<em>numpy.ndarray</em>) – Gridded representation of the z-values over the x and y space.</p></li>
+<li><p><strong>XI</strong> (<em>numpy.ndarray</em>) – Gridded x-coordinates corresponding to the specified resolution.</p></li>
+<li><p><strong>YI</strong> (<em>numpy.ndarray</em>) – Gridded y-coordinates corresponding to the specified resolution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Original Author: Bastien Queste
+[Source Code](<a class="reference external" href="https://github.com/bastienqueste/gliderad2cp/blob/de0652f70f4768c228f83480fa7d1d71c00f9449/gliderad2cp/process_adcp.py#L140">https://github.com/bastienqueste/gliderad2cp/blob/de0652f70f4768c228f83480fa7d1d71c00f9449/gliderad2cp/process_adcp.py#L140</a>)</p>
+<p>Modified by Till Moritz: added the aggregation parameter and the option to chose either bin center or bin edge as the grid coordinates.</p>
 </dd></dl>
 
 <dl class="py function">
