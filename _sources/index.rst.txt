@@ -32,7 +32,7 @@ Welcome to the documentation for the **gliderflightOG1**.  This is a stub, since
    :maxdepth: 2
    :caption: Help and reference
 
-   GitHub Repo <http://github.com/eleanorfrajka/gliderflightOG1>
+   GitHub Repo <https://github.com/ocean-uhh/gliderflightOG1>
    gliderflightOG1
    faq
 
