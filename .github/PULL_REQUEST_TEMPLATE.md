@@ -25,7 +25,7 @@ Please describe your changes clearly and concisely.
 
 **Checklist:**
 
-- [ ] I have followed the [coding conventions](https://eleanorfrajka.github.io/template-project/style_guide.html).
+- [ ] I have followed the [coding conventions](https://ocean-uhh.github.io/template-project/style_guide.html).
 - [ ] I have updated or added tests to cover my changes.
 - [ ] I have updated the documentation if needed.
 - [ ] I have run `pytest` to check that all tests pass.
