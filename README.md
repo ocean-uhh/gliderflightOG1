@@ -5,7 +5,7 @@ A package for running multiple glider flight models on different glider platform
 📘 Documentation is available at:
 👉 https://ocean-uhh.github.io/gliderflightOG1/
 
-Originating from conversations associated with the "vertical velocities" group at [OceanGlidersCommunity](https://github.com/OceanGlidersCommunity/Vertical_Velocities_SOP).  If/when this package is in good shape, it could be transferred to http://github.com/OceanGlidersCommunity or some other relevant organisation.
+Originating from conversations associated with the "vertical velocities" group at [OceanGlidersCommunity](https://github.com/OceanGlidersCommunity/Vertical_Velocities_SOP). This package is now hosted and maintained under the University of Hamburg Oceanography GitHub organization: https://github.com/ocean-uhh/gliderflightOG1.
 
 ---
 
