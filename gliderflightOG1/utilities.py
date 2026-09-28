@@ -493,7 +493,7 @@ def print_profile_diffs(ds, vars_to_print=("PITCH", "TEMP"), n=20, position="beg
     if profiles is None:
         profiles = np.unique(ds.PROFILE_NUMBER.values)
 
-    elif isinstance(profiles, int):
+    elif isinstance(profiles, int) or isinstance(profiles, float):
         profiles = [profiles]
 
     else:
@@ -565,7 +565,8 @@ def print_profile_diffs(ds, vars_to_print=("PITCH", "TEMP"), n=20, position="beg
             print(row)
 
 
-def add_heights(ds, bathymetry):
+
+def add_heights(ds, bathymetry = None):
     """
     Add height above apogee, and height above bottom.
 
@@ -596,11 +597,16 @@ def add_heights(ds, bathymetry):
     # --------------------------------------------------
     # 1. Get bathymetry at each measurement position
     # --------------------------------------------------
-    elevation = bathymetry["elevation"].sel(
-        lon=ds["LONGITUDE"],
-        lat=ds["LATITUDE"],
-        method="nearest",
-    ).values
+    if bathymetry is not None:
+        elevation = bathymetry["elevation"].sel(
+            lon=ds["LONGITUDE"],
+            lat=ds["LATITUDE"],
+            method="nearest",
+        ).values
+
+        ds["HEIGHT_ABOVE_BOTTOM"] = -(
+                ds["DEPTH"] + elevation
+            )
 
     # --------------------------------------------------
     # 2. Height above apogee
@@ -632,12 +638,4 @@ def add_heights(ds, bathymetry):
         ds["DEPTH"].dims,
         height_above_apogee,
     )
-
-    # --------------------------------------------------
-    # 3. Height above bottom
-    # --------------------------------------------------
-    ds["HEIGHT_ABOVE_BOTTOM"] = -(
-        ds["DEPTH"] + elevation
-    )
-
     return ds

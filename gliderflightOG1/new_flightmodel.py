@@ -302,6 +302,7 @@ class SteadyFlightModel:
 
             iteration += 1
 
+            # Convert dynamic pressure to flight speed (cm/s)
             umag = 100 * np.sqrt(2 * q / p.rho0)
 
         return umag, thdeg
@@ -316,7 +317,7 @@ class SteadyFlightModel:
         Returns
         -------
         speed : array-like
-            Flight speed (m/s).
+            Flight speed (cm/s).
         """
         rho = self.compute_density(ds)
         vol = self.compute_volume(ds)
