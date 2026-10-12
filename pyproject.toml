@@ -26,9 +26,11 @@ dynamic = [
   "dependencies",
   "version",
 ]
-urls.documentation = "https://github.com/eleanorfrajka/gliderflightOG1"
-urls.homepage = "https://github.com/eleanorfrajka/gliderflightOG1"
-urls.repository = "https://github.com/eleanorfrajka/gliderflightOG1"
+[project.urls]
+Homepage = "https://github.com/ocean-uhh/gliderflightOG1"
+Documentation = "https://ocean-uhh.github.io/gliderflightOG1/"
+Source = "https://github.com/ocean-uhh/gliderflightOG1"
+Issues = "https://github.com/ocean-uhh/gliderflightOG1/issues"
 
 
 [tool.setuptools.packages.find]

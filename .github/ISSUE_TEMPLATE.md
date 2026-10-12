@@ -41,7 +41,7 @@ If you can, include a minimal, reproducible example or link to a failing test.
 
 ## Checklist
 
-- [ ] I have checked the existing [issues](https://github.com/eleanorfrajka/flightmodels/issues) to avoid duplicates.
+- [ ] I have checked the existing [issues](https://github.com/ocean-uhh/gliderflightOG1/issues) to avoid duplicates.
 - [ ] I have included steps to reproduce the issue, if it's a bug.
 - [ ] I have described the motivation clearly, if it's a feature request.
 
