@@ -103,21 +103,21 @@
 
 <span class="c1"># OG1 Variable Requirements for Flight Model Functions</span>
 <span class="n">OG1_FLIGHT_MODEL_VARS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;flightvec_ds&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;PITCH&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPTH&quot;</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">],</span>  <span class="c1"># Basic flight model variables</span>
-        <span class="s2">&quot;optional&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;BUOYANCY&quot;</span><span class="p">,</span> <span class="s2">&quot;RHO0&quot;</span><span class="p">],</span>  <span class="c1"># Can be calculated if missing</span>
-        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Core flight model calculation requiring pitch angle and depth&quot;</span><span class="p">,</span>
+    <span class="s2">"flightvec_ds"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"required"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"PITCH"</span><span class="p">,</span> <span class="s2">"DEPTH"</span><span class="p">,</span> <span class="s2">"TIME"</span><span class="p">],</span>  <span class="c1"># Basic flight model variables</span>
+        <span class="s2">"optional"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"BUOYANCY"</span><span class="p">,</span> <span class="s2">"RHO0"</span><span class="p">],</span>  <span class="c1"># Can be calculated if missing</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Core flight model calculation requiring pitch angle and depth"</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s2">&quot;regress_all_vec&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;PITCH&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPTH&quot;</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;DIVENUM&quot;</span><span class="p">,</span> <span class="s2">&quot;UPDN&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;optional&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TEMP&quot;</span><span class="p">,</span> <span class="s2">&quot;PSAL&quot;</span><span class="p">,</span> <span class="s2">&quot;GLIDER_VERT_VELO_DZDT&quot;</span><span class="p">,</span> <span class="s2">&quot;PRES&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Flight model parameter optimization requiring dive profiles&quot;</span><span class="p">,</span>
+    <span class="s2">"regress_all_vec"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"required"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"PITCH"</span><span class="p">,</span> <span class="s2">"DEPTH"</span><span class="p">,</span> <span class="s2">"TIME"</span><span class="p">,</span> <span class="s2">"DIVENUM"</span><span class="p">,</span> <span class="s2">"UPDN"</span><span class="p">],</span>
+        <span class="s2">"optional"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"TEMP"</span><span class="p">,</span> <span class="s2">"PSAL"</span><span class="p">,</span> <span class="s2">"GLIDER_VERT_VELO_DZDT"</span><span class="p">,</span> <span class="s2">"PRES"</span><span class="p">],</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Flight model parameter optimization requiring dive profiles"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="nb">vars</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks that all of a list of variables are present in a dataset.</span>
+<span class="w">    </span><span class="sd">"""Checks that all of a list of variables are present in a dataset.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -135,17 +135,17 @@
 <span class="sd">    -----</span>
 <span class="sd">    Original Author: Callum Rollo</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">missing_vars</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">missing_vars</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Required variables </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">missing_vars</span><span class="p">)</span><span class="si">}</span><span class="s2"> do not exist in the supplied dataset.&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Required variables </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">missing_vars</span><span class="p">)</span><span class="si">}</span><span class="s2"> do not exist in the supplied dataset."</span>
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="check_og1_flight_variables">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.check_og1_flight_variables">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">check_og1_flight_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">function_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that a dataset contains required OG1 variables for flight model functions.</span>
+<span class="w">    </span><span class="sd">"""Check that a dataset contains required OG1 variables for flight model functions.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -165,23 +165,23 @@
 <span class="sd">    -------</span>
 <span class="sd">    missing_optional : list</span>
 <span class="sd">        List of optional variables that are missing (for informational purposes)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">OG1_FLIGHT_MODEL_VARS</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Unknown function &#39;</span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&#39;. Available: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">OG1_FLIGHT_MODEL_VARS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"Unknown function '</span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">'. Available: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">OG1_FLIGHT_MODEL_VARS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
 
     <span class="n">requirements</span> <span class="o">=</span> <span class="n">OG1_FLIGHT_MODEL_VARS</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
 
     <span class="c1"># Check required variables</span>
-    <span class="n">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">requirements</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">])</span>
+    <span class="n">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">requirements</span><span class="p">[</span><span class="s2">"required"</span><span class="p">])</span>
 
-    <span class="c1"># Check optional variables (don&#39;t raise error, just return list)</span>
-    <span class="n">missing_optional</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">requirements</span><span class="p">[</span><span class="s2">&quot;optional&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">))</span>
+    <span class="c1"># Check optional variables (don't raise error, just return list)</span>
+    <span class="n">missing_optional</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">requirements</span><span class="p">[</span><span class="s2">"optional"</span><span class="p">])</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">missing_optional</span><span class="p">:</span>
         <span class="n">log_info</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Optional variables missing for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">missing_optional</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"Optional variables missing for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">missing_optional</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">missing_optional</span><span class="p">)</span></div>
@@ -191,14 +191,14 @@
 <div class="viewcode-block" id="get_default_data_dir">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.get_default_data_dir">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_default_data_dir</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span></div>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span></div>
 
 
 
 <div class="viewcode-block" id="apply_defaults">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.apply_defaults">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">apply_defaults</span><span class="p">(</span><span class="n">default_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator to apply default values for &#39;source&#39; and &#39;file_list&#39; parameters if they are None.</span>
+<span class="w">    </span><span class="sd">"""Decorator to apply default values for 'source' and 'file_list' parameters if they are None.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -212,7 +212,7 @@
 <span class="sd">    Callable</span>
 <span class="sd">        A wrapped function with defaults applied.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
@@ -235,7 +235,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_is_valid_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate if a given string is a valid URL with supported schemes.</span>
+<span class="w">    </span><span class="sd">"""Validate if a given string is a valid URL with supported schemes.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -245,17 +245,17 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    bool</span>
-<span class="sd">        True if the URL is valid and uses a supported scheme (&#39;http&#39;, &#39;https&#39;, &#39;ftp&#39;),</span>
+<span class="sd">        True if the URL is valid and uses a supported scheme ('http', 'https', 'ftp'),</span>
 <span class="sd">        otherwise False.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">all</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">scheme</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span> <span class="s2">&quot;ftp&quot;</span><span class="p">),</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">scheme</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"http"</span><span class="p">,</span> <span class="s2">"https"</span><span class="p">,</span> <span class="s2">"ftp"</span><span class="p">),</span>
                 <span class="n">result</span><span class="o">.</span><span class="n">netloc</span><span class="p">,</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>  <span class="c1"># Ensure there&#39;s a path, not necessarily its format</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>  <span class="c1"># Ensure there's a path, not necessarily its format</span>
             <span class="p">],</span>
         <span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -271,7 +271,7 @@
     <span class="n">local_data_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">redownload</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolve the path to a data file, using local source, cache, or downloading if necessary.</span>
+<span class="w">    </span><span class="sd">"""Resolve the path to a data file, using local source, cache, or downloading if necessary.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -291,36 +291,36 @@
 <span class="sd">    Path</span>
 <span class="sd">        Path to the resolved file.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Use local source if provided</span>
     <span class="k">if</span> <span class="n">source</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_valid_url</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
         <span class="n">source_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
         <span class="n">candidate_file</span> <span class="o">=</span> <span class="n">source_path</span> <span class="o">/</span> <span class="n">file_name</span>
         <span class="k">if</span> <span class="n">candidate_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Using local file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">candidate_file</span><span class="p">)</span>
+            <span class="n">log_info</span><span class="p">(</span><span class="s2">"Using local file: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">candidate_file</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">candidate_file</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Local file not found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">candidate_file</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local file not found: </span><span class="si">{</span><span class="n">candidate_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">log_error</span><span class="p">(</span><span class="s2">"Local file not found: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">candidate_file</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Local file not found: </span><span class="si">{</span><span class="n">candidate_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># Use cached file if available and redownload is False</span>
     <span class="n">cached_file</span> <span class="o">=</span> <span class="n">local_data_dir</span> <span class="o">/</span> <span class="n">file_name</span>
     <span class="k">if</span> <span class="n">cached_file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">redownload</span><span class="p">:</span>
-        <span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Using cached file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cached_file</span><span class="p">)</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="s2">"Using cached file: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">cached_file</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cached_file</span>
 
     <span class="c1"># Download if URL is provided</span>
     <span class="k">if</span> <span class="n">download_url</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Downloading file from </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">local_data_dir</span><span class="p">)</span>
+            <span class="n">log_info</span><span class="p">(</span><span class="s2">"Downloading file from </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">local_data_dir</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">download_file</span><span class="p">(</span><span class="n">download_url</span><span class="p">,</span> <span class="n">local_data_dir</span><span class="p">,</span> <span class="n">redownload</span><span class="o">=</span><span class="n">redownload</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Failed to download </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download </span><span class="si">{</span><span class="n">download_url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">log_error</span><span class="p">(</span><span class="s2">"Failed to download </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Failed to download </span><span class="si">{</span><span class="n">download_url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># If no options succeeded</span>
     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2"> could not be resolved from local source, cache, or remote URL.&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2"> could not be resolved from local source, cache, or remote URL."</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 
@@ -328,7 +328,7 @@
 <div class="viewcode-block" id="download_file">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.download_file">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">download_file</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">redownload</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download a file from HTTP(S) or FTP to the specified destination folder.</span>
+<span class="w">    </span><span class="sd">"""Download a file from HTTP(S) or FTP to the specified destination folder.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -349,7 +349,7 @@
 <span class="sd">    ValueError</span>
 <span class="sd">        If the URL scheme is unsupported.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">dest_folder_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dest_folder</span><span class="p">)</span>
     <span class="n">dest_folder_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -360,23 +360,23 @@
 
     <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"http"</span><span class="p">,</span> <span class="s2">"https"</span><span class="p">):</span>
         <span class="c1"># HTTP(S) download</span>
         <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
             <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;ftp&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">"ftp"</span><span class="p">:</span>
         <span class="c1"># FTP download</span>
         <span class="k">with</span> <span class="n">FTP</span><span class="p">(</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftp</span><span class="p">:</span>
             <span class="n">ftp</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>  <span class="c1"># anonymous login</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">ftp</span><span class="o">.</span><span class="n">retrbinary</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RETR </span><span class="si">{</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">ftp</span><span class="o">.</span><span class="n">retrbinary</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RETR </span><span class="si">{</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported URL scheme in </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported URL scheme in </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">local_filename</span><span class="p">)</span></div>
 
@@ -390,7 +390,7 @@
     <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Safely update attributes of an xarray Dataset without overwriting existing keys,</span>
+<span class="w">    </span><span class="sd">"""Safely update attributes of an xarray Dataset without overwriting existing keys,</span>
 <span class="sd">    unless explicitly allowed.</span>
 
 <span class="sd">    Parameters</span>
@@ -409,13 +409,13 @@
 <span class="sd">    xr.Dataset</span>
 <span class="sd">        The dataset with updated attributes.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">overwrite</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
                     <span class="n">log_debug</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Attribute &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; already exists in dataset attrs and will not be overwritten.&quot;</span><span class="p">,</span>
+                        <span class="sa">f</span><span class="s2">"Attribute '</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">' already exists in dataset attrs and will not be overwritten."</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="k">continue</span>  <span class="c1"># Skip assignment</span>
         <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
@@ -424,27 +424,60 @@
 
 
 
+<div class="viewcode-block" id="regular_grid">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.regular_grid">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">regular_grid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create bin edges for a regular grid such that multiples of `res` fall on</span>
+<span class="sd">    bin centers. For example, with res=5 the edges are [-2.5, 2.5, 7.5, ...]</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array-like</span>
+<span class="sd">        Input data used to determine the grid range.</span>
+<span class="sd">    res : float</span>
+<span class="sd">        Grid resolution (bin width).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.ndarray</span>
+<span class="sd">        Bin edges for the regular grid.</span>
+<span class="sd">    """</span>
+    <span class="n">d_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="n">res</span><span class="p">)</span> <span class="o">*</span> <span class="n">res</span> <span class="o">+</span> <span class="n">res</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">d_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="n">res</span><span class="p">)</span> <span class="o">*</span> <span class="n">res</span> <span class="o">-</span> <span class="n">res</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">d_min</span><span class="p">,</span> <span class="n">d_max</span> <span class="o">+</span> <span class="n">res</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="construct_2dgrid">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.construct_2dgrid">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">construct_2dgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">yi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_bin_center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">y_bin_center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">agg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;median&#39;</span><span class="p">):</span>
-
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">construct_2dgrid</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">v</span><span class="p">,</span>
+    <span class="n">xi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">yi</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">x_bin_center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">y_bin_center</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">agg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"median"</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Constructs a 2D gridded representation of input data based on specified resolutions. The function takes in x, y, and v data,</span>
 <span class="sd">    and generates a grid where each cell contains the aggregated value (e.g., mean, median) of v corresponding to the x and y coordinates.</span>
-<span class="sd">    If the input data is already binned and you want the grid coordinates to align with the original bin edges, set `x_bin_center` and `y_bin_center` to False and the </span>
+<span class="sd">    If the input data is already binned and you want the grid coordinates to align with the original bin edges, set `x_bin_center` and `y_bin_center` to False and the</span>
 <span class="sd">    resolution (i.e. xi and yi) to the bin size.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : array-like  </span>
-<span class="sd">        Input data representing the x-dimension.  </span>
-<span class="sd">    y : array-like  </span>
-<span class="sd">        Input data representing the y-dimension.  </span>
-<span class="sd">    v : array-like  </span>
-<span class="sd">        Input data representing the z-dimension (values to be gridded).  </span>
-<span class="sd">    xi : int or float, optional, default=1  </span>
-<span class="sd">        Resolution for the x-dimension grid spacing.  </span>
-<span class="sd">    yi : int or float, optional, default=1  </span>
+<span class="sd">    x : array-like</span>
+<span class="sd">        Input data representing the x-dimension.</span>
+<span class="sd">    y : array-like</span>
+<span class="sd">        Input data representing the y-dimension.</span>
+<span class="sd">    v : array-like</span>
+<span class="sd">        Input data representing the z-dimension (values to be gridded).</span>
+<span class="sd">    xi : int or float, optional, default=1</span>
+<span class="sd">        Resolution for the x-dimension grid spacing.</span>
+<span class="sd">    yi : int or float, optional, default=1</span>
 <span class="sd">        Resolution for the y-dimension grid spacing.</span>
 <span class="sd">    x_bin_center : bool, optional, default=True</span>
 <span class="sd">        If True, the x-coordinate grid (`XI`) corresponds to the **center** of each x-bin.</span>
@@ -454,39 +487,46 @@
 <span class="sd">    y_bin_center : bool, optional, default=True</span>
 <span class="sd">        Same as `x_bin_center`, but for the y-coordinate grid (`YI`).</span>
 <span class="sd">        Set to False if your `y` data is already pre-binned with the same resolution as `yi`.</span>
-<span class="sd">    agg : str, optional, default=&#39;median&#39;</span>
-<span class="sd">        Aggregation method to be used for gridding. Options include &#39;mean&#39;, &#39;median&#39;, etc.</span>
+<span class="sd">    agg : str, optional, default='median'</span>
+<span class="sd">        Aggregation method to be used for gridding. Options include 'mean', 'median', etc.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    grid : numpy.ndarray  </span>
-<span class="sd">        Gridded representation of the z-values over the x and y space.  </span>
-<span class="sd">    XI : numpy.ndarray  </span>
-<span class="sd">        Gridded x-coordinates corresponding to the specified resolution.  </span>
-<span class="sd">    YI : numpy.ndarray  </span>
-<span class="sd">        Gridded y-coordinates corresponding to the specified resolution. </span>
+<span class="sd">    grid : numpy.ndarray</span>
+<span class="sd">        Gridded representation of the z-values over the x and y space.</span>
+<span class="sd">    XI : numpy.ndarray</span>
+<span class="sd">        Gridded x-coordinates corresponding to the specified resolution.</span>
+<span class="sd">    YI : numpy.ndarray</span>
+<span class="sd">        Gridded y-coordinates corresponding to the specified resolution.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    Original Author: Bastien Queste</span>
 <span class="sd">    [Source Code](https://github.com/bastienqueste/gliderad2cp/blob/de0652f70f4768c228f83480fa7d1d71c00f9449/gliderad2cp/process_adcp.py#L140)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Modified by Till Moritz: added the aggregation parameter and the option to chose either bin center or bin edge as the grid coordinates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">xi</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">xi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">yi</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span>
+        <span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">yi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span>
 
-    <span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"x"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">"v"</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
-    <span class="n">raw</span><span class="p">[</span><span class="s1">&#39;xbins&#39;</span><span class="p">],</span> <span class="n">xbin_iter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">raw</span><span class="p">[</span><span class="s1">&#39;ybins&#39;</span><span class="p">],</span> <span class="n">ybin_iter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">raw</span><span class="p">[</span><span class="s2">"xbins"</span><span class="p">],</span> <span class="n">xbin_iter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span>
+        <span class="n">raw</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">raw</span><span class="p">[</span><span class="s2">"ybins"</span><span class="p">],</span> <span class="n">ybin_iter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span>
+        <span class="n">raw</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
 
-    <span class="n">raw</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;xbins&#39;</span><span class="p">,</span> <span class="s1">&#39;ybins&#39;</span><span class="p">])</span>  <span class="c1"># Remove out-of-bound rows</span>
-    <span class="n">_tmp</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;xbins&#39;</span><span class="p">,</span> <span class="s1">&#39;ybins&#39;</span><span class="p">])[</span><span class="s1">&#39;v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg</span><span class="p">)</span>
-    <span class="n">grid</span><span class="p">[</span><span class="n">_tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">_tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_tmp</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"xbins"</span><span class="p">,</span> <span class="s2">"ybins"</span><span class="p">])</span>  <span class="c1"># Remove out-of-bound rows</span>
+    <span class="n">_tmp</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"xbins"</span><span class="p">,</span> <span class="s2">"ybins"</span><span class="p">])[</span><span class="s2">"v"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">agg</span><span class="p">)</span>
+    <span class="n">grid</span><span class="p">[</span>
+        <span class="n">_tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+        <span class="n">_tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">_tmp</span><span class="o">.</span><span class="n">values</span>
     <span class="c1"># Match XI and YI shape to grid using bin centers</span>
     <span class="k">if</span> <span class="n">x_bin_center</span><span class="p">:</span>
         <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>

@@ -95,15 +95,15 @@
 <div class="viewcode-block" id="save_dataset">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.writers.save_dataset">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">save_dataset</span><span class="p">(</span>
-    <span class="n">ds</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;../data/test.nc&quot;</span><span class="p">,</span> <span class="n">delete_existing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prompt_user</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">ds</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s2">"../data/test.nc"</span><span class="p">,</span> <span class="n">delete_existing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prompt_user</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attempts to save the dataset to a NetCDF file. If a TypeError occurs due to invalid attribute values,</span>
+<span class="w">    </span><span class="sd">"""Attempts to save the dataset to a NetCDF file. If a TypeError occurs due to invalid attribute values,</span>
 <span class="sd">    it converts the invalid attributes to strings and retries the save operation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    ds (xarray.Dataset): The dataset to be saved.</span>
-<span class="sd">    output_file (str): The path to the output NetCDF file. Defaults to &#39;test.nc&#39;.</span>
+<span class="sd">    output_file (str): The path to the output NetCDF file. Defaults to 'test.nc'.</span>
 <span class="sd">    delete_existing (bool): Whether to delete the file if it already exists. Defaults to False.</span>
 <span class="sd">    prompt_user (bool): Whether to prompt the user before deleting an existing file. Defaults to True.</span>
 
@@ -113,26 +113,26 @@
 
 <span class="sd">    Based on: https://github.com/pydata/xarray/issues/3743</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">output_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">prompt_user</span><span class="p">:</span>
             <span class="n">user_input</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; already exists. Delete it? (y/n): &quot;</span><span class="p">)</span>
+                <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File '</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">' already exists. Delete it? (y/n): "</span><span class="p">)</span>
                 <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                 <span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="p">)</span>
-            <span class="k">if</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File not deleted. Aborting save operation.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s2">"y"</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"File not deleted. Aborting save operation."</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="n">output_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; deleted. Re-saving.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File '</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">' deleted. Re-saving."</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">delete_existing</span><span class="p">:</span>
             <span class="n">output_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; deleted. Re-saving.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File '</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">' deleted. Re-saving."</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;File &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; already exists and delete_existing is False. Aborting save operation.&quot;</span>
+                <span class="sa">f</span><span class="s2">"File '</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">' already exists and delete_existing is False. Aborting save operation."</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
 
@@ -140,7 +140,7 @@
     <span class="c1"># More general</span>
     <span class="n">valid_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Number</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NETCDF4_CLASSIC&quot;</span><span class="p">)</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"NETCDF4_CLASSIC"</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
@@ -148,22 +148,22 @@
             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variable</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">valid_types</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
                     <span class="nb">print</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;variable &#39;</span><span class="si">{</span><span class="n">varname</span><span class="si">}</span><span class="s2">&#39;: Converting attribute &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39; with value &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; to string.&quot;</span>
+                        <span class="sa">f</span><span class="s2">"variable '</span><span class="si">{</span><span class="n">varname</span><span class="si">}</span><span class="s2">': Converting attribute '</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">' with value '</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">' to string."</span>
                     <span class="p">)</span>
                     <span class="n">variable</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NETCDF4_CLASSIC&quot;</span><span class="p">)</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"NETCDF4_CLASSIC"</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to save dataset:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Failed to save dataset:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
             <span class="n">datetime_vars</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">if</span> <span class="n">ds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;datetime64[ns]&quot;</span>
+                <span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">if</span> <span class="n">ds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">"datetime64[ns]"</span>
             <span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables with dtype datetime64[ns]:&quot;</span><span class="p">,</span> <span class="n">datetime_vars</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Variables with dtype datetime64[ns]:"</span><span class="p">,</span> <span class="n">datetime_vars</span><span class="p">)</span>
             <span class="n">float_attrs</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
             <span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attributes with dtype float64:&quot;</span><span class="p">,</span> <span class="n">float_attrs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Attributes with dtype float64:"</span><span class="p">,</span> <span class="n">float_attrs</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
 </pre></div>

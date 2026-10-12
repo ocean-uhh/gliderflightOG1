@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.construct_2dgrid"><code class="docutils literal notranslate"><span class="pre">construct_2dgrid()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.download_file"><code class="docutils literal notranslate"><span class="pre">download_file()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.get_default_data_dir"><code class="docutils literal notranslate"><span class="pre">get_default_data_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.regular_grid"><code class="docutils literal notranslate"><span class="pre">regular_grid()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.resolve_file_path"><code class="docutils literal notranslate"><span class="pre">resolve_file_path()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gliderflightOG1.utilities.safe_update_attrs"><code class="docutils literal notranslate"><span class="pre">safe_update_attrs()</span></code></a></li>
 </ul>
@@ -706,6 +707,27 @@ Set to False if your <cite>y</cite> data is already pre-binned with the same res
 <dt class="sig sig-object py" id="gliderflightOG1.utilities.get_default_data_dir">
 <span class="sig-prename descclassname"><span class="pre">gliderflightOG1.utilities.</span></span><span class="sig-name descname"><span class="pre">get_default_data_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/gliderflightOG1/utilities.html#get_default_data_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gliderflightOG1.utilities.get_default_data_dir" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gliderflightOG1.utilities.regular_grid">
+<span class="sig-prename descclassname"><span class="pre">gliderflightOG1.utilities.</span></span><span class="sig-name descname"><span class="pre">regular_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gliderflightOG1/utilities.html#regular_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gliderflightOG1.utilities.regular_grid" title="Link to this definition"></a></dt>
+<dd><p>Create bin edges for a regular grid such that multiples of <cite>res</cite> fall on
+bin centers. For example, with res=5 the edges are [-2.5, 2.5, 7.5, …]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>array-like</em>) – Input data used to determine the grid range.</p></li>
+<li><p><strong>res</strong> (<em>float</em>) – Grid resolution (bin width).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Bin edges for the regular grid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gliderflightOG1.utilities.resolve_file_path">

@@ -97,37 +97,37 @@
 <span class="n">_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="c1"># Various conversions from the key to units_name with the multiplicative conversion factor</span>
 <span class="n">unit_conversion</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;cm/s&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;m/s&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
-    <span class="s2">&quot;cm s-1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;m s-1&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
-    <span class="s2">&quot;m/s&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;cm/s&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-    <span class="s2">&quot;m s-1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;cm s-1&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-    <span class="s2">&quot;S/m&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;mS/cm&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-    <span class="s2">&quot;S m-1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;mS cm-1&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-    <span class="s2">&quot;mS/cm&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;S/m&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
-    <span class="s2">&quot;mS cm-1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;S m-1&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
-    <span class="s2">&quot;dbar&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
-    <span class="s2">&quot;Pa&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;dbar&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">},</span>
-    <span class="s2">&quot;degrees_Celsius&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Celsius&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-    <span class="s2">&quot;Celsius&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;degrees_Celsius&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;cm&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
-    <span class="s2">&quot;cm&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
-    <span class="s2">&quot;km&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
-    <span class="s2">&quot;g m-3&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;kg m-3&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">},</span>
-    <span class="s2">&quot;kg m-3&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;units_name&quot;</span><span class="p">:</span> <span class="s2">&quot;g m-3&quot;</span><span class="p">,</span> <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+    <span class="s2">"cm/s"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"m/s"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+    <span class="s2">"cm s-1"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"m s-1"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+    <span class="s2">"m/s"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"cm/s"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+    <span class="s2">"m s-1"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"cm s-1"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+    <span class="s2">"S/m"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"mS/cm"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+    <span class="s2">"S m-1"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"mS cm-1"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+    <span class="s2">"mS/cm"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"S/m"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+    <span class="s2">"mS cm-1"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"S m-1"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+    <span class="s2">"dbar"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"Pa"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
+    <span class="s2">"Pa"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"dbar"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">},</span>
+    <span class="s2">"degrees_Celsius"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"Celsius"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">"Celsius"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"degrees_Celsius"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">"m"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"cm"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+    <span class="s2">"cm"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"m"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+    <span class="s2">"km"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"m"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+    <span class="s2">"g m-3"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"kg m-3"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">},</span>
+    <span class="s2">"kg m-3"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"units_name"</span><span class="p">:</span> <span class="s2">"g m-3"</span><span class="p">,</span> <span class="s2">"factor"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
 <span class="p">}</span>
 
 <span class="c1"># Specify the preferred units, and it will convert if the conversion is available in unit_conversion</span>
-<span class="n">preferred_units</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;m s-1&quot;</span><span class="p">,</span> <span class="s2">&quot;dbar&quot;</span><span class="p">,</span> <span class="s2">&quot;S m-1&quot;</span><span class="p">]</span>
+<span class="n">preferred_units</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"m s-1"</span><span class="p">,</span> <span class="s2">"dbar"</span><span class="p">,</span> <span class="s2">"S m-1"</span><span class="p">]</span>
 
 <span class="c1"># String formats for units.  The key is the original, the value is the desired format</span>
 <span class="n">unit_str_format</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;m/s&quot;</span><span class="p">:</span> <span class="s2">&quot;m s-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cm/s&quot;</span><span class="p">:</span> <span class="s2">&quot;cm s-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S/m&quot;</span><span class="p">:</span> <span class="s2">&quot;S m-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;meters&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;degrees_Celsius&quot;</span><span class="p">:</span> <span class="s2">&quot;Celsius&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;g/m^3&quot;</span><span class="p">:</span> <span class="s2">&quot;g m-3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m^3/s&quot;</span><span class="p">:</span> <span class="s2">&quot;Sv&quot;</span><span class="p">,</span>
+    <span class="s2">"m/s"</span><span class="p">:</span> <span class="s2">"m s-1"</span><span class="p">,</span>
+    <span class="s2">"cm/s"</span><span class="p">:</span> <span class="s2">"cm s-1"</span><span class="p">,</span>
+    <span class="s2">"S/m"</span><span class="p">:</span> <span class="s2">"S m-1"</span><span class="p">,</span>
+    <span class="s2">"meters"</span><span class="p">:</span> <span class="s2">"m"</span><span class="p">,</span>
+    <span class="s2">"degrees_Celsius"</span><span class="p">:</span> <span class="s2">"Celsius"</span><span class="p">,</span>
+    <span class="s2">"g/m^3"</span><span class="p">:</span> <span class="s2">"g m-3"</span><span class="p">,</span>
+    <span class="s2">"m^3/s"</span><span class="p">:</span> <span class="s2">"Sv"</span><span class="p">,</span>
 <span class="p">}</span>
 
 
@@ -136,7 +136,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_insitu_density</span><span class="p">(</span>
     <span class="n">salinity</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute in-situ density from salinity, temperature, and pressure using GSW.</span>
+<span class="w">    </span><span class="sd">"""Compute in-situ density from salinity, temperature, and pressure using GSW.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -156,7 +156,7 @@
 <span class="sd">    density : array-like</span>
 <span class="sd">        In-situ density (kg/m³).</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># If longitude and latitude are not provided, use dummy values</span>
     <span class="k">if</span> <span class="n">longitude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="o">-</span><span class="mf">40.0</span><span class="p">)</span>
@@ -178,8 +178,8 @@
 
 <div class="viewcode-block" id="calc_w_meas">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.calc_w_meas">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">calc_w_meas</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">depth_var</span><span class="o">=</span><span class="s2">&quot;DEPTH&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the vertical velocity of a glider using changes in pressure with time.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_w_meas</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">depth_var</span><span class="o">=</span><span class="s2">"DEPTH"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Calculates the vertical velocity of a glider using changes in pressure with time.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -194,7 +194,7 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    Original Author: Eleanor Frajka-Williams</span>
-<span class="sd">    </span>
+
 <span class="sd">    Seaglider/basestation3.Utils.ctr_1st_diff() code</span>
 <span class="sd">    dydx = np.array(np.zeros(len(y)), float)</span>
 <span class="sd">    end = len(x) - 1</span>
@@ -202,12 +202,12 @@
 <span class="sd">    dydx[0] = (y[1] - y[0]) / (x[1] - x[0])</span>
 <span class="sd">    dydx[end] = (y[end] - y[end - 1]) / (x[end] - x[end - 1])</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">utilities</span><span class="o">.</span><span class="n">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;TIME&quot;</span><span class="p">])</span>
+<span class="sd">    """</span>
+    <span class="n">utilities</span><span class="o">.</span><span class="n">_check_necessary_variables</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">"TIME"</span><span class="p">])</span>
     <span class="c1"># Ensure inputs are numpy arrays</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">TIME</span><span class="o">.</span><span class="n">values</span>
-    <span class="k">if</span> <span class="s2">&quot;DEPTH_Z&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
-        <span class="n">var</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;PRES&quot;</span><span class="p">,</span> <span class="s2">&quot;LATITUDE&quot;</span><span class="p">,</span> <span class="s2">&quot;LONGITUDE&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">"DEPTH_Z"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="n">var</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"PRES"</span><span class="p">,</span> <span class="s2">"LATITUDE"</span><span class="p">,</span> <span class="s2">"LONGITUDE"</span><span class="p">]</span>
     <span class="p">):</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">calc_DEPTH_Z</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
     <span class="n">depth</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">depth_var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -222,14 +222,14 @@
     <span class="n">delta_z_meters</span> <span class="o">=</span> <span class="n">depth</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">depth</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">delta_time_datetime64ns</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">delta_time_sec</span> <span class="o">=</span> <span class="n">delta_time_datetime64ns</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="s2">"s"</span>
     <span class="p">)</span>  <span class="c1"># Convert to seconds</span>
 
     <span class="c1"># Calculate vertical velocity (rate of change of pressure with time)</span>
     <span class="n">vertical_velocity</span> <span class="o">=</span> <span class="n">delta_z_meters</span> <span class="o">/</span> <span class="n">delta_time_sec</span>
 
     <span class="c1"># Pad the result to match the original array length</span>
-    <span class="n">vertical_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">vertical_velocity</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;edge&quot;</span><span class="p">)</span>
+    <span class="n">vertical_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">vertical_velocity</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"edge"</span><span class="p">)</span>
 
     <span class="c1"># No - Convert vertical velocity from m/s to cm/s</span>
     <span class="n">vertical_velocity</span> <span class="o">=</span> <span class="n">vertical_velocity</span>
@@ -237,9 +237,9 @@
     <span class="c1"># Add vertical velocity to the dataset</span>
     <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
         <span class="n">GLIDER_VERT_VELO_DZDT</span><span class="o">=</span><span class="p">(</span>
-            <span class="p">(</span><span class="s2">&quot;N_MEASUREMENTS&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"N_MEASUREMENTS"</span><span class="p">),</span>
             <span class="n">vertical_velocity</span><span class="p">,</span>
-            <span class="p">{</span><span class="s2">&quot;long_name&quot;</span><span class="p">:</span> <span class="s2">&quot;glider_vertical_speed_from_pressure&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;m s-1&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"long_name"</span><span class="p">:</span> <span class="s2">"glider_vertical_speed_from_pressure"</span><span class="p">,</span> <span class="s2">"units"</span><span class="p">:</span> <span class="s2">"m s-1"</span><span class="p">},</span>
         <span class="p">)</span>
     <span class="p">)</span>
 
@@ -250,7 +250,7 @@
 <div class="viewcode-block" id="gridthem">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.gridthem">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">gridthem</span><span class="p">(</span><span class="n">w_measured</span><span class="p">,</span> <span class="n">w_model</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">divenum</span><span class="p">,</span> <span class="n">updn</span><span class="p">,</span> <span class="n">press</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bin average vertical speeds into pressure bins.</span>
+<span class="w">    </span><span class="sd">"""Bin average vertical speeds into pressure bins.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -276,7 +276,7 @@
 <span class="sd">    updng : array</span>
 <span class="sd">        Binned up/down flags.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">bin_avg</span><span class="p">(</span><span class="n">segP</span><span class="p">,</span> <span class="n">segD</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">):</span>
         <span class="n">dgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">pgrid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -306,7 +306,7 @@
 <div class="viewcode-block" id="ml_coord">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.ml_coord">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ml_coord</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="n">wspdg</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">,</span> <span class="n">mld</span><span class="p">,</span> <span class="n">minmld</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute means and variances for mixed-layer segments of profiles.</span>
+<span class="w">    </span><span class="sd">"""Compute means and variances for mixed-layer segments of profiles.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -332,7 +332,7 @@
 <span class="sd">    hgrid : ndarray</span>
 <span class="sd">        Scaled pressure bin array (zgrid) [0-1].</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nprofiles</span><span class="p">,</span> <span class="n">nlevels</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">wmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">nprofiles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     <span class="n">wsqr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">nprofiles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
@@ -358,7 +358,7 @@
 <div class="viewcode-block" id="bl_coord">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.bl_coord">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">bl_coord</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="n">wspdg</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">,</span> <span class="n">mld</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute means for below-mixed-layer segments of profiles.</span>
+<span class="w">    </span><span class="sd">"""Compute means for below-mixed-layer segments of profiles.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -376,7 +376,7 @@
 <span class="sd">    wmean : ndarray</span>
 <span class="sd">        Mean difference (wspdg - wg) below mixed layer, per profile.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nprofiles</span><span class="p">,</span> <span class="n">nlevels</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">wmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">nprofiles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
@@ -398,7 +398,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">choose_min_prof</span><span class="p">(</span>
     <span class="n">wg</span><span class="p">,</span> <span class="n">wspdg</span><span class="p">,</span> <span class="n">timeg</span><span class="p">,</span> <span class="n">mld</span><span class="p">,</span> <span class="n">divenumg</span><span class="p">,</span> <span class="n">updng</span><span class="p">,</span> <span class="n">pgrid</span><span class="p">,</span> <span class="n">whichone</span><span class="p">,</span> <span class="n">plotflag</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Choose minimization metric based on gridded profiles.</span>
+<span class="w">    </span><span class="sd">"""Choose minimization metric based on gridded profiles.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -428,7 +428,7 @@
 <span class="sd">    tmp : array</span>
 <span class="sd">        Profile-wise differences (typically dive-climb).</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">w_water</span> <span class="o">=</span> <span class="n">wspdg</span> <span class="o">-</span> <span class="n">wg</span>
     <span class="n">allmin</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -451,7 +451,7 @@
         <span class="p">)</span>
         <span class="n">w_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">wmeanD</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">wmeanC</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;mlprofdiff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"mlprofdiff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">wmeanD</span> <span class="o">-</span> <span class="n">wmeanC</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">whichone</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
@@ -466,20 +466,20 @@
         <span class="p">)</span>
 
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">wmeanD</span> <span class="o">-</span> <span class="n">wmeanC</span><span class="p">)</span>
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;flprofdiff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"flprofdiff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">plotflag</span><span class="p">:</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
             <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wmeanD</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">hgridD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dive&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wmeanC</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">hgridC</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Climb&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wmeanD</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">hgridD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Dive"</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wmeanC</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">hgridC</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Climb"</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Vertical speed (cm/s)&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Depth (m)&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Vertical speed (cm/s)"</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Depth (m)"</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Dive vs Climb Vertical Speeds (Full Depth)&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Dive vs Climb Vertical Speeds (Full Depth)"</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -504,7 +504,7 @@
         <span class="p">)</span>
         <span class="n">w_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">wmeanD</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">wmeanC</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">wskew</span>
 
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;meanw&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"meanw"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">wmeanD</span> <span class="o">-</span> <span class="n">wmeanC</span>
 
     <span class="k">elif</span> <span class="n">whichone</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
@@ -522,11 +522,11 @@
         <span class="p">)</span>
         <span class="n">w_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">wmeanD</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">wmeanC</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">wskew</span>
 
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;meanwbl&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"meanwbl"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">wmeanD</span> <span class="o">-</span> <span class="n">wmeanC</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown whichone=</span><span class="si">{</span><span class="n">whichone</span><span class="si">}</span><span class="s2"> in choose_min_prof&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown whichone=</span><span class="si">{</span><span class="n">whichone</span><span class="si">}</span><span class="s2"> in choose_min_prof"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">allmin</span><span class="p">,</span> <span class="n">tmp</span></div>
 
@@ -535,7 +535,7 @@
 <div class="viewcode-block" id="choose_min_long">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.choose_min_long">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">choose_min_long</span><span class="p">(</span><span class="n">w_measured</span><span class="p">,</span> <span class="n">w_model</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">divenum</span><span class="p">,</span> <span class="n">updn</span><span class="p">,</span> <span class="n">press</span><span class="p">,</span> <span class="n">whichone</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute different minimization metrics for long time-series.</span>
+<span class="w">    </span><span class="sd">"""Compute different minimization metrics for long time-series.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -559,20 +559,20 @@
 <span class="sd">    allmin : dict</span>
 <span class="sd">        Dictionary of metrics.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">w_water</span> <span class="o">=</span> <span class="n">w_model</span> <span class="o">-</span> <span class="n">w_measured</span>
     <span class="n">allmin</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">if</span> <span class="n">whichone</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c1"># Charlie&#39;s standard: RMS penalty</span>
+        <span class="c1"># Charlie's standard: RMS penalty</span>
         <span class="n">w_penalty</span> <span class="o">=</span> <span class="mi">5</span>
         <span class="n">w_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w_water</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">w_rms_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">w_s</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">w_water</span><span class="p">))</span>
         <span class="n">w_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
             <span class="n">w_s</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w_water</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">w_water</span><span class="p">))</span> <span class="o">*</span> <span class="n">w_penalty</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">w_water</span><span class="p">)</span>
         <span class="p">)</span>
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;charlie&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;charlie_v&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms_v</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"charlie"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"charlie_v"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms_v</span>
 
     <span class="k">elif</span> <span class="n">whichone</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="c1"># Full-depth minimizing dive-climb diff</span>
@@ -594,10 +594,10 @@
         <span class="n">intwmd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">intwmd</span><span class="p">[:</span><span class="n">N</span><span class="p">])</span>
 
         <span class="n">w_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">intwmc</span> <span class="o">-</span> <span class="n">intwmd</span><span class="p">))</span>
-        <span class="n">allmin</span><span class="p">[</span><span class="s2">&quot;intdiff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
+        <span class="n">allmin</span><span class="p">[</span><span class="s2">"intdiff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_rms</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;choose_min_long not implemented for whichone = </span><span class="si">{</span><span class="n">whichone</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"choose_min_long not implemented for whichone = </span><span class="si">{</span><span class="n">whichone</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">allmin</span></div>
 
@@ -606,7 +606,7 @@
 <div class="viewcode-block" id="ramsey_binavg">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.ramsey_binavg">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ramsey_binavg</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">ww</span><span class="p">,</span> <span class="n">zgrid</span><span class="p">,</span> <span class="n">dall</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform bin-averaging of vertical speed offsets over pressure bins.</span>
+<span class="w">    </span><span class="sd">"""Perform bin-averaging of vertical speed offsets over pressure bins.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -630,7 +630,7 @@
 <span class="sd">    CIpm : np.ndarray, optional</span>
 <span class="sd">        Confidence interval around mean (NaN if dall not provided).</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nbin</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">zgrid</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">meanw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">nbin</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     <span class="n">NNz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nbin</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -668,7 +668,7 @@
 <div class="viewcode-block" id="cum_ttest">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.cum_ttest">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">cum_ttest</span><span class="p">(</span><span class="n">ndof</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximate cumulative Student&#39;s t-test value.</span>
+<span class="w">    </span><span class="sd">"""Approximate cumulative Student's t-test value.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -682,7 +682,7 @@
 <span class="sd">    tval : float</span>
 <span class="sd">        t-distribution value corresponding to p and ndof.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">t</span>
 
     <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span> <span class="o">/</span> <span class="mi">100</span>
@@ -693,7 +693,7 @@
 <div class="viewcode-block" id="ramsey_offset">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.ramsey_offset">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">ramsey_offset</span><span class="p">(</span><span class="n">w_measured</span><span class="p">,</span> <span class="n">w_model</span><span class="p">,</span> <span class="n">updn</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">zgrid</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate Ramsey offset misfit between measured and modeled vertical speeds.</span>
+<span class="w">    </span><span class="sd">"""Calculate Ramsey offset misfit between measured and modeled vertical speeds.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -711,11 +711,11 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    allmin : dict</span>
-<span class="sd">        Dictionary containing &#39;ramsey&#39; WRMS value.</span>
+<span class="sd">        Dictionary containing 'ramsey' WRMS value.</span>
 <span class="sd">    tmp : array-like</span>
 <span class="sd">        Difference between mean dive and mean climb profiles [cm/s].</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Find indices of climbing and diving parts</span>
     <span class="n">iup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">updn</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">idn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">updn</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -730,7 +730,7 @@
     <span class="c1"># Weighted RMS (wrms) of dive and climb offsets</span>
     <span class="n">wrms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">meandive</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">meanclimb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="n">allmin</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ramsey&quot;</span><span class="p">:</span> <span class="n">wrms</span><span class="p">}</span>
+    <span class="n">allmin</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"ramsey"</span><span class="p">:</span> <span class="n">wrms</span><span class="p">}</span>
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">meandive</span> <span class="o">-</span> <span class="n">meanclimb</span>
 
     <span class="k">return</span> <span class="n">allmin</span><span class="p">,</span> <span class="n">tmp</span></div>
@@ -740,7 +740,7 @@
 <div class="viewcode-block" id="reformat_units_var">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.reformat_units_var">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">reformat_units_var</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">unit_format</span><span class="o">=</span><span class="n">unit_str_format</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renames units in the dataset based on the provided dictionary for OG1.</span>
+<span class="w">    </span><span class="sd">"""Renames units in the dataset based on the provided dictionary for OG1.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -751,8 +751,8 @@
 <span class="sd">    -------</span>
 <span class="sd">    xarray.Dataset: The dataset with renamed units.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">old_unit</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">]</span>
+<span class="sd">    """</span>
+    <span class="n">old_unit</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"units"</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">old_unit</span> <span class="ow">in</span> <span class="n">unit_format</span><span class="p">:</span>
         <span class="n">new_unit</span> <span class="o">=</span> <span class="n">unit_format</span><span class="p">[</span><span class="n">old_unit</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -766,7 +766,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">convert_units_var</span><span class="p">(</span>
     <span class="n">var_values</span><span class="p">,</span> <span class="n">current_unit</span><span class="p">,</span> <span class="n">new_unit</span><span class="p">,</span> <span class="n">unit_conversion</span><span class="o">=</span><span class="n">unit_conversion</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the units of variables in an xarray Dataset to preferred units.  This is useful, for instance, to convert cm/s to m/s.</span>
+<span class="w">    </span><span class="sd">"""Convert the units of variables in an xarray Dataset to preferred units.  This is useful, for instance, to convert cm/s to m/s.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -774,24 +774,24 @@
 <span class="sd">    preferred_units (list): A list of strings representing the preferred units.</span>
 <span class="sd">    unit_conversion (dict): A dictionary mapping current units to conversion information.</span>
 <span class="sd">    Each key is a unit string, and each value is a dictionary with:</span>
-<span class="sd">        - &#39;factor&#39;: The factor to multiply the variable by to convert it.</span>
-<span class="sd">        - &#39;units_name&#39;: The new unit name after conversion.</span>
+<span class="sd">        - 'factor': The factor to multiply the variable by to convert it.</span>
+<span class="sd">        - 'units_name': The new unit name after conversion.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    xarray.Dataset: The dataset with converted units.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">current_unit</span> <span class="ow">in</span> <span class="n">unit_conversion</span>
-        <span class="ow">and</span> <span class="n">new_unit</span> <span class="ow">in</span> <span class="n">unit_conversion</span><span class="p">[</span><span class="n">current_unit</span><span class="p">][</span><span class="s2">&quot;units_name&quot;</span><span class="p">]</span>
+        <span class="ow">and</span> <span class="n">new_unit</span> <span class="ow">in</span> <span class="n">unit_conversion</span><span class="p">[</span><span class="n">current_unit</span><span class="p">][</span><span class="s2">"units_name"</span><span class="p">]</span>
     <span class="p">):</span>
-        <span class="n">conversion_factor</span> <span class="o">=</span> <span class="n">unit_conversion</span><span class="p">[</span><span class="n">current_unit</span><span class="p">][</span><span class="s2">&quot;factor&quot;</span><span class="p">]</span>
+        <span class="n">conversion_factor</span> <span class="o">=</span> <span class="n">unit_conversion</span><span class="p">[</span><span class="n">current_unit</span><span class="p">][</span><span class="s2">"factor"</span><span class="p">]</span>
         <span class="n">new_values</span> <span class="o">=</span> <span class="n">var_values</span> <span class="o">*</span> <span class="n">conversion_factor</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">new_values</span> <span class="o">=</span> <span class="n">var_values</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No conversion information found for </span><span class="si">{</span><span class="n">current_unit</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">new_unit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="c1">#        raise ValueError(f&quot;No conversion information found for {current_unit} to {new_unit}&quot;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No conversion information found for </span><span class="si">{</span><span class="n">current_unit</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">new_unit</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1">#        raise ValueError(f"No conversion information found for {current_unit} to {new_unit}")</span>
     <span class="k">return</span> <span class="n">new_values</span></div>
 
 </pre></div>
