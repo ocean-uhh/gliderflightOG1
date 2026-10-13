@@ -3,7 +3,6 @@ pandas>=2.0
 xarray>=2023.12.0
 netcdf4>=1.6
 scipy>=1.10
-json>=2.0
 
 # Oceanographic tools
 gsw>=3.6.16
