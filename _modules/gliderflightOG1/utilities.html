@@ -539,6 +539,230 @@
     <span class="n">YI</span><span class="p">,</span> <span class="n">XI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">grid</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">YI</span></div>
 
+
+
+<div class="viewcode-block" id="interpolate_over_nans">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.interpolate_over_nans">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">interpolate_over_nans</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Interpolates over NaN values in a specified variable of an xarray Dataset along the 'N_MEASUREMENTS' dimension.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        The input dataset containing the variable to interpolate.</span>
+<span class="sd">    var_name : str</span>
+<span class="sd">        The name of the variable in the dataset to interpolate.</span>
+<span class="sd">    method : str, optional</span>
+<span class="sd">        The interpolation method to use (default is 'linear'). Other methods supported by xarray can be used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.Dataset</span>
+<span class="sd">        A new dataset with the specified variable interpolated over NaN values.</span>
+<span class="sd">    """</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># avoid modifying original dataset</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span>
+    <span class="n">ds</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">interpolate_na</span><span class="p">(</span><span class="n">dim</span> <span class="o">=</span> <span class="s2">"N_MEASUREMENTS"</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds</span></div>
+
+
+
+<div class="viewcode-block" id="restore_masked_array">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.restore_masked_array">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">restore_masked_array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Restore an array to its original length using a boolean mask.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values : np.ndarray</span>
+<span class="sd">        Values corresponding to mask == True.</span>
+<span class="sd">    mask : np.ndarray</span>
+<span class="sd">        Boolean mask of the original array.</span>
+<span class="sd">    fill_value : float, default=np.nan</span>
+<span class="sd">        Value to insert where mask == False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    full_array : np.ndarray</span>
+<span class="sd">        Array of the same length as mask.</span>
+<span class="sd">    """</span>
+    <span class="n">full_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">full_array</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+    <span class="k">return</span> <span class="n">full_array</span></div>
+
+
+
+<div class="viewcode-block" id="print_profile_diffs">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.print_profile_diffs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_profile_diffs</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">vars_to_print</span><span class="o">=</span><span class="p">(</span><span class="s2">"PITCH"</span><span class="p">,</span> <span class="s2">"TEMP"</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">"beginning"</span><span class="p">,</span> <span class="n">profiles</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Print timestamps, time differences, and selected variables for each profile.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">    vars_to_print : list/tuple of str</span>
+<span class="sd">        Variables to print (e.g., ["PITCH", "TEMP"])</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Number of samples per profile</span>
+<span class="sd">    position : str</span>
+<span class="sd">        "beginning", "end", or "middle" — where to select the n points</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">PROFILE_NUMBER</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">profiles</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">profiles</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">profiles</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Warning: profiles should be an int or list of ints. Using all profiles."</span><span class="p">)</span>
+        <span class="n">profiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">PROFILE_NUMBER</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">profiles</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Profile </span><span class="si">{</span><span class="n">profile</span><span class="si">}</span><span class="s2">:"</span><span class="p">)</span>
+
+        <span class="c1"># mask for this profile</span>
+        <span class="n">profile_msk</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">PROFILE_NUMBER</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">profile</span>
+
+        <span class="c1"># timestamps → numeric int64 (ns)</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">TIME</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">profile_msk</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"datetime64[ns]"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span>
+
+        <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+
+        <span class="c1"># --- choose region ---</span>
+        <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="s2">"beginning"</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="n">position</span> <span class="o">==</span> <span class="s2">"end"</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span> <span class="o">-</span> <span class="n">n</span><span class="p">),</span> <span class="n">L</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">position</span> <span class="o">==</span> <span class="s2">"middle"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">L</span><span class="p">:</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mid</span> <span class="o">=</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="n">half</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">half</span><span class="p">)</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"position must be 'beginning', 'end', or 'middle'"</span><span class="p">)</span>
+
+        <span class="c1"># selected timestamps</span>
+        <span class="n">ts_sel</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="c1"># compute Δt (ns → s)</span>
+        <span class="n">diff_seconds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ts_sel</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-9</span>
+
+        <span class="c1"># collect selected variable data (aligned with diff → skip first)</span>
+        <span class="n">var_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_print</span><span class="p">:</span>
+            <span class="n">var_values</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">profile_msk</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">var_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">var_values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c1"># print header</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'t datetime[ns]'</span><span class="si">:</span><span class="s2">&lt;29</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">'Δt [s]'</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_print</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" | </span><span class="si">{</span><span class="n">var</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">"</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+
+        <span class="c1"># rows</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">diff_seconds</span><span class="p">):</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">ts_sel</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"datetime64[ns]"</span><span class="p">)</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">:</span><span class="s2">&lt;29</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">"</span>
+
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_print</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">var_data</span><span class="p">[</span><span class="n">var</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" | </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">"</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" | </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">"</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="add_heights">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.utilities.add_heights">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_heights</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">bathymetry</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Add height above apogee, and height above bottom.</span>
+
+<span class="sd">    Height above apogee is calculated independently for each profile:</span>
+
+<span class="sd">        height_above_apogee = max(depth in profile) - depth</span>
+
+<span class="sd">    Height above bottom is:</span>
+
+<span class="sd">        height_above_bottom = -(depth + bathymetry)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : xarray.Dataset</span>
+<span class="sd">        Dataset containing DEPTH, PROFILE_NUMBER, LONGITUDE and LATITUDE.</span>
+
+<span class="sd">    bathymetry : xarray.Dataset</span>
+<span class="sd">        GEBCO bathymetry dataset containing 'elevation',</span>
+<span class="sd">        'lon', and 'lat'.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xarray.Dataset</span>
+<span class="sd">        Dataset with BATHYMETRY, HEIGHT_ABOVE_APOGEE and</span>
+<span class="sd">        HEIGHT_ABOVE_BOTTOM added.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># --------------------------------------------------</span>
+    <span class="c1"># 1. Get bathymetry at each measurement position</span>
+    <span class="c1"># --------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">bathymetry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">elevation</span> <span class="o">=</span> <span class="n">bathymetry</span><span class="p">[</span><span class="s2">"elevation"</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+            <span class="n">lon</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="s2">"LONGITUDE"</span><span class="p">],</span>
+            <span class="n">lat</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="s2">"LATITUDE"</span><span class="p">],</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">"nearest"</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">"HEIGHT_ABOVE_BOTTOM"</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span>
+                <span class="n">ds</span><span class="p">[</span><span class="s2">"DEPTH"</span><span class="p">]</span> <span class="o">+</span> <span class="n">elevation</span>
+            <span class="p">)</span>
+
+    <span class="c1"># --------------------------------------------------</span>
+    <span class="c1"># 2. Height above apogee</span>
+    <span class="c1"># --------------------------------------------------</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">"DEPTH"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">profile_n</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">"PROFILE_NUMBER"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">height_above_apogee</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+        <span class="n">depth</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">profile_n</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">profile_n</span> <span class="o">==</span> <span class="n">profile</span>
+
+        <span class="n">depth_profile</span> <span class="o">=</span> <span class="n">depth</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">depth_profile</span><span class="p">)):</span>
+            <span class="k">continue</span>
+
+        <span class="n">apogee_depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">depth_profile</span><span class="p">)</span>
+
+        <span class="n">height_above_apogee</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">apogee_depth</span> <span class="o">-</span> <span class="n">depth_profile</span>
+        <span class="p">)</span>
+
+    <span class="n">ds</span><span class="p">[</span><span class="s2">"HEIGHT_ABOVE_APOGEE"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">"DEPTH"</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">height_above_apogee</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds</span></div>
+
 </pre></div>
 
            </div>

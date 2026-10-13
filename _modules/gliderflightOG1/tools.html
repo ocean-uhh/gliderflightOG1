@@ -246,6 +246,56 @@
     <span class="k">return</span> <span class="n">ds</span></div>
 
 
+<span class="c1"># The following function should be seen as a general utility function for computing time derivatives of any variable with respect to time. </span>
+<span class="c1"># It uses a central difference method over ±n samples, and it can handle cases where the time intervals are too large by setting those derivatives to NaN.</span>
+
+<div class="viewcode-block" id="time_derivative">
+<a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.time_derivative">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">time_derivative</span><span class="p">(</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute the time derivative using a central difference over ±n samples.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    time : np.ndarray</span>
+<span class="sd">        Array of times (datetime64).</span>
+<span class="sd">    values : np.ndarray</span>
+<span class="sd">        Array of values to differentiate.</span>
+<span class="sd">    n : int, default=1</span>
+<span class="sd">        Number of samples on each side for the central difference.</span>
+<span class="sd">    max_dt : float or None, default=500</span>
+<span class="sd">        Maximum allowed time interval (s). Larger intervals are set to NaN.</span>
+<span class="sd">        Set to None to disable.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivative : np.ndarray</span>
+<span class="sd">        Time derivative with NaN padding at the ends.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"n must be &gt;= 1"</span><span class="p">)</span>
+
+    <span class="n">derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="n">n</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"s"</span><span class="p">)</span>
+
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">invalid</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">max_dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">invalid</span> <span class="o">|=</span> <span class="n">dt</span> <span class="o">&gt;</span> <span class="n">max_dt</span>
+    <span class="n">dt</span><span class="p">[</span><span class="n">invalid</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">derivative</span><span class="p">[:</span><span class="o">-</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">dv</span> <span class="o">/</span> <span class="n">dt</span>
+
+    <span class="k">return</span> <span class="n">derivative</span></div>
+
+
 
 <div class="viewcode-block" id="gridthem">
 <a class="viewcode-back" href="../../gliderflightOG1.html#gliderflightOG1.tools.gridthem">[docs]</a>
